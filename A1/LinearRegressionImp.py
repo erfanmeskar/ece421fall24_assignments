@@ -24,10 +24,9 @@ def fit_LinRegr(X_train, y_train):
     Returns
     -------
     w: numpy.ndarray with shape (d+1,)
-        represents the coefficients of the line computed by the pocket
-        algorithm that best separates the two classes of training data points.
-        The dimensions of this vector is (d+1) as the offset term is accounted
-        in the computation.
+        represents the coefficients of the line computed by the linear 
+        regression. The dimensions of this vector is (d+1) as the offset term
+        is accounted in the computation.
     """
 
     # TODO: add your implementation here
