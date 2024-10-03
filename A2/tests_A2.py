@@ -308,7 +308,6 @@ def q23():
 
 def test_sgd(f, dfdw, w_init=5., max_iter=10000, lr_list=[0.001, 0.005, 0.01, 0.05], optimizer_type="sgd"):
     update_thres = 1e-6
-    # n_no_change_thresh = 4
     w_dict = {}
     loss_dict = {}
     for k, lr in enumerate(lr_list):
@@ -319,7 +318,6 @@ def test_sgd(f, dfdw, w_init=5., max_iter=10000, lr_list=[0.001, 0.005, 0.01, 0.
         w = np.copy(w_init)
         w_dict[lr] = []
         w_dict[lr].append(np.copy(w))
-        # n_no_change = 0
         while (i < max_iter):
             loss_dict[lr].append(f(w))
             gradient = dfdw(w)
@@ -327,8 +325,6 @@ def test_sgd(f, dfdw, w_init=5., max_iter=10000, lr_list=[0.001, 0.005, 0.01, 0.
             w += update
             w_dict[lr].append(np.copy(w))
             if np.abs(update).max() < update_thres:
-                # n_no_change += 1
-            # if n_no_change >= n_no_change_thresh:
                 break
             i +=1
         try:
@@ -371,19 +367,3 @@ def test_momentum(f, dfdw, w_init=5., max_iter=10000, lr_list=[0.001, 0.005, 0.0
         except:
             display(Markdown(f"* With learning rate {lr:0.4f}: $w^\star=$ {w}, $f(w^\star)=$ {f(w):0.5f} and $\\nabla f(w^\star)=$ {dfdw(w)}, and converged after {i} iterations"))
     return w_dict, loss_dict
-
-
-# def test1(X_train, X_test, y_train, y_test, optimizer='sgd', lr=0.0001):
-#     model = myTorch.MultiClassLogisticRegression()
-#     model.fit(X_train, y_train, lr=lr, optimizer=optimizer)
-#     print(f"{optimizer} Evaluation Score: {model.score(X_test,y_test)}")
-#     return model
-
-
-# def test2(x, y1, y2, sub, label1, label2):
-#     aux = plt.subplot(sub)
-#     plt.title("Loss during training")
-#     plt.xlabel("Number of iterations")
-#     plt.ylabel("Loss")
-#     plt.plot(x, y1, 'r--', y2)
-#     aux.legend([label1, label2])
