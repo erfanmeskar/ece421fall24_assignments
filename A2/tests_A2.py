@@ -272,7 +272,7 @@ def q20():
     print(f"Augmented Input:\n{X_aug}")
     print(f"True labels: {y}")
     print(f"One-hot-encoded True labels:\n{logr.y_one_hot_encoded}")
-    print(f"Expected gradient: 1.076...")
+    print(f"Expected cross entropy: 1.076...")
     print(
         f"Returned output: {logr.cross_entropy(logr.y_one_hot_encoded, logr.predict_with_X_aug_(X_aug))}"
     )
